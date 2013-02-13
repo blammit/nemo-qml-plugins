@@ -46,7 +46,8 @@ public:
     ~SignOnUiContainerInterface();
 
     Q_INVOKABLE int windowId();
-    Q_INVOKABLE void show(int xOffset = 0, int yOffset = 0, int widthOffset = 0, int heightOffset = 0);
+
+    Q_INVOKABLE void show(int x, int y);
     Q_INVOKABLE void hide();
 
 Q_SIGNALS:

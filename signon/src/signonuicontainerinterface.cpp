@@ -173,21 +173,17 @@ int SignOnUiContainerInterface::windowId()
     for \a xOffset, \a yOffset, \a widthOffset or \a heightOffset, the
     container widget will be positioned and resized accordingly.
 */
-void SignOnUiContainerInterface::show(int xOffset, int yOffset, int widthOffset, int heightOffset)
+void SignOnUiContainerInterface::show(int x, int y)
 {
     if (!d->c)
         d->constructEmbedContainer(this);
 
     if (!d->c)
-        return; // couldn't construct embed container.
+        return;
 
-    QRectF sbr = sceneBoundingRect();
-    QPointF spos = scenePos();
-    int x = xOffset + qRound(sbr.x()) + qRound(spos.x());
-    int y = yOffset + qRound(sbr.y()) + qRound(spos.y());
-    int w = widthOffset + qRound(sbr.width());
-    int h = heightOffset + qRound(sbr.height());
-    d->c->setGeometry(x, y, w, h);
+    d->c->setGeometry(x, y,
+                      d->c->parentWidget()->width(),
+                      d->c->parentWidget()->height());
     d->c->show();
 }
 
